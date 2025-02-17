@@ -7,9 +7,21 @@ import CardMedia from "@mui/material/CardMedia";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useAccount } from "wagmi";
+
+// Define the structure of a single NFT object
+interface NFT {
+  nftName: string;
+  nftDescription: string;
+  nftLogoUrl: string;
+  nftID: number;
+  userWalletAddress: string;
+}
+
+// Define the structure of an array of NFT objects
+type NFTArray = NFT[];
 const MintGallery = () => {
   const { address, isConnected } = useAccount();
-  const [product, setProduct] = useState([]);
+  const [product, setProduct] = useState<NFTArray>([]);
   useEffect(() => {
     const fetchNFTs = async () => {
       if (!address) return; // Avoid making a request if the address is not available yet
