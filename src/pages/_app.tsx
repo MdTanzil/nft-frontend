@@ -7,8 +7,8 @@ import type { AppProps } from "next/app";
 import { WagmiProvider } from "wagmi";
 import "../styles/globals.css";
 
+import theme from "../styles/theme";
 import { config } from "../wagmi";
-import theme from "./theme";
 
 const client = new QueryClient();
 
