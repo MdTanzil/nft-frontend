@@ -93,7 +93,7 @@ const MintForm = () => {
     try {
       // Store metadata
       const response = await axios.post(
-        "http://localhost:5000/api/nft",
+        "https://nft-backend-chi.vercel.app/api/nft",
         metadata
       );
       const { metadataUrl } = response.data;

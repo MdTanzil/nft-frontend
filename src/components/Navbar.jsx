@@ -11,26 +11,7 @@ const Navbar = () => {
             <Box component="div" sx={{ flexGrow: 1 }}>
               <img src="./logo.svg" alt="" />
             </Box>
-            <ConnectButton.Custom>
-              {({ account, openConnectModal }) => {
-                return (
-                  <>
-                    <button
-                      onClick={openConnectModal}
-                      className="px-4 py-2 bg-[#925aef] hover:bg-[#925aef 90] rounded-full  text-white  "
-                    >
-                      {" "}
-                      {account
-                        ? `${account.address.slice(
-                            0,
-                            6
-                          )}...${account.address.slice(-4)}`
-                        : " Connect Wallet"}
-                    </button>
-                  </>
-                );
-              }}
-            </ConnectButton.Custom>
+            <ConnectButton showBalance={false} accountStatus="address" />
           </Toolbar>
         </AppBar>
       </Box>

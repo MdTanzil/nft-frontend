@@ -17,7 +17,7 @@ const MintGallery = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/nft/gallery/${address}`
+          `https://nft-backend-chi.vercel.app/api/nft/gallery/${address}`
         );
         if (response.status === 200) {
           // Update state only if the response data is different from the previous data
