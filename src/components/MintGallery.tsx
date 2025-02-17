@@ -15,6 +15,7 @@ interface NFT {
   nftLogoUrl: string;
   nftID: number;
   userWalletAddress: string;
+  _id: string;
 }
 
 // Define the structure of an array of NFT objects
