@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import {
   Button,
   Card,
@@ -8,7 +6,9 @@ import {
   Typography,
 } from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import axios from "axios";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { parseEther } from "viem";
 import {
   useAccount,
@@ -66,7 +66,7 @@ const MintForm = () => {
     });
   const mintNFT = async () => {
     if (!isConnected) {
-      alert("Connect your wallet first!");
+      toast.error("Please connect your wallet first!");
       return;
     }
 
@@ -89,7 +89,7 @@ const MintForm = () => {
       nftLogoUrl: imageUrl,
       userWalletAddress: address,
     };
-
+    const mintingToast = toast.loading("Storing metadata...");
     try {
       // Store metadata
       const response = await axios.post(
@@ -98,18 +98,21 @@ const MintForm = () => {
       );
       const { metadataUrl } = response.data;
 
-      console.log("Metadata stored at:", metadataUrl);
+      toast.success("Metadata stored successfully!", { id: mintingToast });
 
       // 3️⃣ Mint NFT on the blockchain
+      toast.loading("Minting NFT on the blockchain...", { id: mintingToast });
       await sendTransaction({
         to: CONTRACT_ADDRESS,
         value: parseEther("0.001"),
       });
 
-      alert("Minting initiated! Check your wallet for confirmation.");
+      toast.success("Minting initiated! Check your wallet.", {
+        id: mintingToast,
+      });
     } catch (error) {
       console.error("Minting failed:", error);
-      alert("Error minting NFT.");
+      toast.error("Minting failed! Please try again.", { id: mintingToast });
     } finally {
       // Reset form and loading state after transaction completion
       setName("");
