@@ -1,8 +1,7 @@
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import { Box, Button, Container, Typography } from "@mui/material";
-import React from "react";
-const Hero: React.FC = () => {
+const Hero = () => {
   return (
     <>
       <Box
